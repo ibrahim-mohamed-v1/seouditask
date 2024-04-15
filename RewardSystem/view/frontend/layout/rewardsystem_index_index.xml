@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+       	<css src="Seoudi_RewardSystem::css/reward.css"/>
+	</head>
+	<update handle="customer_account"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Seoudi\RewardSystem\Block\RewardPoints" name="rewardsystem.index.index" template="Seoudi_RewardSystem::rewardPoints.phtml" cacheable="false">
+                <arguments>
+                    <argument name="reward_view_model" xsi:type="object">Seoudi\RewardSystem\ViewModel\Reward</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

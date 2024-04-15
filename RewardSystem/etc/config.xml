@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default>
+      <rewardsystem>
+          <general_settings>
+              <enable>0</enable>
+              <reward_value>1</reward_value>
+              <max_reward_assign>1000</max_reward_assign>
+              <max_reward_used>1</max_reward_used>
+          </general_settings>
+
+      </rewardsystem>
+  </default>
+</config>

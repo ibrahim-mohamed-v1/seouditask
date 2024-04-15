@@ -1,0 +1,84 @@
+<?php
+// Get the list of products from the block method
+/*** @var \Seoudi\ProductRecommendations\Block\Recommendations $block **/
+$recommendedProducts = $block->getCustomerBrowsingHistory();
+$lastPurchasedProducts = $block->getLastPurchasedProducts();
+$formKey = $block->getFormKey();
+
+?>
+<?php if (!empty($recommendedProducts)): ?>
+   <?php  array_shift($recommendedProducts); ?>
+    <div class="products-wrapper">
+        <div class="block-title">
+            <h2><?= __('You Might Also Like') ?></h2>
+        </div>
+        <div class="block-content">
+            <div class="products-grid">
+                <?php foreach ($recommendedProducts as $product): ?>
+                    <div class="product-item">
+                        <div class="product-item-info">
+                            <a href="<?= $block->getProductUrl($product) ?>" class="product-item-photo">
+                                <?= $block->getImage($product, 'category_page_list')->toHtml(); ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a href="<?= $block->getProductUrl($product) ?>"><?= $block->escapeHtml($product->getName()) ?></a>
+                                </strong>
+                                <div class="product-item-price">
+                                    <?= $block->getProductPrice($product) ?>
+                                </div>
+                                <div class="actions">
+                                    <form action="<?= $block->getAddToCartUrl($product) ?>" method="post">
+                                        <input type="hidden" name="product" value="<?= $product->getEntityId() ?>"/>
+                                        <input type="hidden" name="form_key" value="<?= $formKey ?>"/>
+                                        <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary">
+                                            <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($lastPurchasedProducts)): ?>
+    <div class="products-wrapper">
+        <div class="block-title">
+            <h2><?= __('Reorder') ?></h2>
+        </div>
+        <div class="block-content">
+            <div class="products-grid">
+                <?php foreach ($lastPurchasedProducts as $product): ?>
+                    <div class="product-item">
+                        <div class="product-item-info">
+                            <a href="<?= $block->getProductUrl($product) ?>" class="product-item-photo">
+                                <?= $block->getImage($product, 'category_page_list')->toHtml(); ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a href="<?= $block->getProductUrl($product) ?>"><?= $block->escapeHtml($product->getName()) ?></a>
+                                </strong>
+                                <div class="product-item-price">
+                                    <?= $block->getProductPrice($product) ?>
+                                </div>
+                                <div class="actions">
+                                    <form action="<?= $block->getAddToCartUrl($product) ?>" method="post">
+                                        <input type="hidden" name="product" value="<?= $product->getEntityId() ?>"/>
+                                        <input type="hidden" name="form_key" value="<?= $formKey ?>"/>
+                                        <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary">
+                                            <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="seoudi" translate="label" sortOrder="10">
+            <label>Seoudi</label>
+        </tab>
+        <section id="rewardsystem" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Reward System</label>
+            <tab>seoudi</tab>
+            <resource>Seoudi_RewardSystem::config_rewardsystem</resource>
+            <group id="general_settings" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings of Reward Points</label>
+                <field id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Reward System Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="reward_value" translate="label comment" sortOrder="2" type="text" showInDefault="1">
+                    <label>1 Reward Point Value is Equals to</label>
+                    <validate>validate-number required-entry validate-digits-range digits-range-0-1000000</validate>
+                    <comment>e.g. 10</comment>
+                </field>
+                <field id="max_reward_assign" translate="label comment" sortOrder="3" type="text" showInDefault="1">
+                    <label>Maximum Reward Points can Assign to a Customer</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 1000 (Maximum number of points assign to a customer)</comment>
+                </field>
+                <field id="max_reward_used" translate="label comment" sortOrder="4" type="text" showInDefault="1">
+                    <label>Maximum Reward Points can be Used By a Customer</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 1000 (Maximum number of points can be used by the customer at the time of order place)</comment>
+                </field>
+
+                <field id="order_reward_approved_on" translate="label comment" sortOrder="9" type="select" showInDefault="1" >
+                    <label>Order Placed Reward Points Applied When</label>
+                    <source_model>Seoudi\RewardSystem\Model\Config\Source\Ordermode</source_model>
+                    <comment>Reward points for placed order will Approved on the selected event.</comment>
+                </field>
+                <field id="priority" translate="label comment" sortOrder="10" type="select" showInDefault="1" >
+                    <label>Order Placed Reward Points Calculation Based On</label>
+                    <source_model>Seoudi\RewardSystem\Model\Config\Source\Priority</source_model>
+                    <comment>Reward points for placed order will calculate based on Product/Cart/Category.</comment>
+                </field>
+                <field id="activeproduct" translate="label comment" sortOrder="11" type="select" showInDefault="1">
+                    <label>Rewards Applied product's Quantity wise</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="priority">0</field>
+                    </depends>
+                    <comment>If yes then reward points will apply product's quantity wise.</comment>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

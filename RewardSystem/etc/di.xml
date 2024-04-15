@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- plugins -->
+    <type name="Magento\Review\Model\ResourceModel\Review">
+        <plugin name="Seoudi_RewardSystem::afterAggregate" type="Seoudi\RewardSystem\Plugin\Model\ResourceModel\Review" sortOrder="1" />
+    </type>
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="wk-abstractaction-context-plugin" type="Seoudi\RewardSystem\Plugin\App\Action\Context" sortOrder="15"/>
+    </type>
+    <!-- plugins ends -->
+
+    <preference for="Seoudi\RewardSystem\Api\Data\RewarddetailSearchResultsInterface"
+                type="Seoudi\RewardSystem\Model\RewarddetailSearchResults" />
+    <preference for="Seoudi\RewardSystem\Api\Data\RewardorderDetailSearchResultsInterface"
+                type="Seoudi\RewardSystem\Model\RewardorderDetailSearchResults" />
+    <preference for="Seoudi\RewardSystem\Api\Data\RewardproductSearchResultsInterface"
+                type="Seoudi\RewardSystem\Model\RewardproductSearchResults" />
+    <preference for="Seoudi\RewardSystem\Api\Data\RewardproductSpecificSearchResultsInterface"
+                type="Seoudi\RewardSystem\Model\RewardproductSpecificSearchResults" />
+    <preference for="Seoudi\RewardSystem\Api\Data\RewardrecordSearchResultsInterface"
+                type="Seoudi\RewardSystem\Model\RewardrecordSearchResults" />
+
+     <preference for="Seoudi\RewardSystem\Api\Data\RewardrecordInterface" type="Seoudi\RewardSystem\Model\Rewardrecord"/>
+    <preference for="Seoudi\RewardSystem\Api\Data\RewarddetailInterface" type="Seoudi\RewardSystem\Model\Rewarddetail"/>
+    <preference for="Seoudi\RewardSystem\Api\Data\RewardorderDetailInterface" type="Seoudi\RewardSystem\Model\RewardorderDetail"/>
+    <preference for="Seoudi\RewardSystem\Api\Data\RewardproductInterface" type="Seoudi\RewardSystem\Model\Rewardproduct"/>
+     <preference for="Seoudi\RewardSystem\Api\Data\RewardproductSpecificInterface" type="Seoudi\RewardSystem\Model\RewardproductSpecific"/>
+
+    <preference for="Seoudi\RewardSystem\Api\RewardRepositoryInterface" type="Seoudi\RewardSystem\Model\RewardRepository" />
+    <preference for="Seoudi\RewardSystem\Api\RewardrecordRepositoryInterface" type="Seoudi\RewardSystem\Model\RewardrecordRepository"/>
+    <preference for="Seoudi\RewardSystem\Api\RewarddetailRepositoryInterface" type="Seoudi\RewardSystem\Model\RewarddetailRepository"/>
+    <preference for="Seoudi\RewardSystem\Api\RewardorderDetailRepositoryInterface" type="Seoudi\RewardSystem\Model\RewardorderDetailRepository"/>
+    <preference for="Seoudi\RewardSystem\Api\RewardproductRepositoryInterface" type="Seoudi\RewardSystem\Model\RewardproductRepository"/>
+     <preference for="Seoudi\RewardSystem\Api\RewardproductSpecificRepositoryInterface" type="Seoudi\RewardSystem\Model\RewardproductSpecificRepository"/>
+
+    <type name="Seoudi\RewardSystem\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+     <type name="Seoudi\RewardSystem\Logger\RewardLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">rewardlogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Seoudi\RewardSystem\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Seoudi\RewardSystem\Api\Data\RewardrecordInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">rs_reward_record</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Seoudi\RewardSystem\Api\Data\RewarddetailInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">rs_reward_details</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Seoudi\RewardSystem\Api\Data\RewardproductInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_products</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Seoudi\RewardSystem\Api\Data\RewardproductSpecificInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_products_specific</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rewardsystem_reward_details_data_source" xsi:type="string">Seoudi\RewardSystem\Model\ResourceModel\Rewardrecord\Grid\Collection</item>
+                <item name="rewardsystem_reward_individual_details_data_source" xsi:type="string">Seoudi\RewardSystem\Model\ResourceModel\Rewarddetail\Grid\Collection</item>
+                <item name="reward_transaction_customer_listing_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Seoudi\RewardSystem\Model\ResourceModel\Rewarddetail\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rs_reward_details</argument>
+            <argument name="eventPrefix" xsi:type="string">reward_detail_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">rewarddetail_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Seoudi\RewardSystem\Model\ResourceModel\Rewarddetail</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Seoudi\RewardSystem\Model\ResourceModel\Rewardrecord\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rs_reward_record</argument>
+            <argument name="eventPrefix" xsi:type="string">rewardsystem_rewardrecord_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">rewardrecord_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Seoudi\RewardSystem\Model\ResourceModel\Rewardrecord</argument>
+        </arguments>
+    </virtualType>
+
+
+    <preference for="Magento\Config\Controller\Adminhtml\System\Config\Save" type="Seoudi\RewardSystem\Rewrite\System\Config\Save"/>
+</config>

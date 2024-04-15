@@ -1,0 +1,20 @@
+{
+    "name": "Seoudi/reward_system",
+    "description": "Reward system module for Magento2 ",
+    "require": {
+        "magento/framework": "103.0.*"
+    },
+    "type": "magento2-module",
+    "version": "4.0.4",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Seoudi\\RewardSystem\\": ""
+        }
+    }
+}

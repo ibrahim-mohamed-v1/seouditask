@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Seoudi Software
+ *
+ * @category Seoudi
+ * @package Seoudi_RewardSystem
+ * @author Seoudi
+ * @copyright Copyright (c) Seoudi Software Private Limited (https://Seoudi.com)
+ * @license https://store.Seoudi.com/license.html
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-rewardsystem-index-link" ifconfig="rewardsystem/general_settings/enable">
+                <arguments>
+                    <argument name="path" xsi:type="string">rewardsystem</argument>
+                    <argument name="label" xsi:type="string" translate="true">My Reward Points</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

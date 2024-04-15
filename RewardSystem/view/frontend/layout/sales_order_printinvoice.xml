@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Seoudi Software.
+ *
+ * @category  Seoudi
+ * @package   Seoudi_RewardSystem
+ * @author    Seoudi
+ * @copyright Copyright (c) Seoudi Software Private Limited (https://Seoudi.com)
+ * @license   https://store.Seoudi.com/license.html
+ */  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="invoice_totals">
+            <block class="Seoudi\RewardSystem\Block\Sales\Order\Reward" name="rewardamount"/>
+        </referenceContainer>
+    </body>
+</page>

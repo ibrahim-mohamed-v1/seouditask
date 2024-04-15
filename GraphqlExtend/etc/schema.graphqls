@@ -1,0 +1,8 @@
+extend type Query {
+    isLoggedIn: Boolean @resolver(class: "Seoudi\\GraphqlExtend\\Model\\Resolver\\IsLoggedIn")
+    @doc(description: "loggedIn Flag.")
+}
+extend type StoreConfig {
+    config_field: String @resolver(class: "Seoudi\\GraphqlExtend\\Model\\Resolver\\ConfigField")
+    @doc(description: "Config field.")
+}

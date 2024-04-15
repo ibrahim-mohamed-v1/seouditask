@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Seoudi Software
+ *
+ * @category Seoudi
+ * @package Seoudi_RewardSystem
+ * @author Seoudi
+ * @copyright Copyright (c) Seoudi Software Private Limited (https://Seoudi.com)
+ * @license https://store.Seoudi.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_save_after">
+        <observer name="Seoudi_rewardsystem_sales_order_place_after_observer" instance="Seoudi\RewardSystem\Observer\MultiShipObserver" />
+    </event>
+</config>
